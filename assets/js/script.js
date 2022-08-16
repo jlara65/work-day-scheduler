@@ -1,11 +1,11 @@
-let eventsObject = {};
+let eventsObject = {}; // set the variable 
 
-function displayDate() {
+function displayDate() { // set date format to display the current date 
     let nowDate = moment().format('dddd MMMM Do YYYY');
     $('#currentDay').text(nowDate);
 }
 
-function checkHour() {
+function checkHour() { // function to check current hour and set class name in textarea to link css background color
     var hourArray = ['08', '09', '10', '11', '12', '13', '14', '15', '16', '17'];
     let nowHour = moment().format('HH');
     for (var id of hourArray) {
@@ -19,7 +19,7 @@ function checkHour() {
     }
 }
 
-function refreshTime() {
+function refreshTime() { // function to update every second 
     let nowTime = moment().format('HH:mm:ss');
     setInterval(() => {
         if (nowTime === '00:00:00') {
@@ -29,7 +29,8 @@ function refreshTime() {
         }
     }, 1000);
 };
-function loadEvents() {
+
+function loadEvents() { // function of object properties in the localStorage load in textArea 
     eventsObject = JSON.parse(localStorage.getItem('eventsObject')) || {};
     console.log(eventsObject);
     for (var key in eventsObject) {
@@ -41,7 +42,7 @@ function loadEvents() {
     }
 }
 
-$(".saveBtn").click(function(event) {
+$(".saveBtn").click(function(event) { // function to storage any data entered in textarea after click save button
     let timeId = $(this).val();
     let timeData = $(`#${timeId}`).val();
     
@@ -50,7 +51,7 @@ $(".saveBtn").click(function(event) {
 
 })
 
-
+// call all functions
 displayDate(); 
 refreshTime();
 checkHour();
